@@ -22,6 +22,13 @@ class Stack{
     }
 
     public void push (int element){
+        if(top == stack.length -1){
+            int [] newStack = new int[stack.length*2];
+            for(int i = 0 ; i <= top; i++){
+                newStack[i] = stack[i];
+            }
+            stack = newStack;
+        }
         stack[++top] = element;
     }
 
