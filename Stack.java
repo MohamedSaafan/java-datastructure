@@ -11,29 +11,36 @@ package datastructure;
  */
 class Stack{
     private int [] stack;
-    private int top = 0 ;
+    private int top = -1 ;
+
     public Stack(){
         this(100);
     }
+
     public Stack(int numberOfElement) {
         stack = new int[numberOfElement];
-        
     }
-    public void push (int i){
 
-        stack[top++] = i;
+    public void push (int element){
+        stack[++top] = element;
     }
+
     public  int pop(){
-    
 
-        return stack[top-- -1];
+        if(!this.isEmpty()){
+            throw new Error("the Stack doesn't contain any elements");
+        }
+        return stack[top--];
     }
+
     public int peek(){
-        return stack[top -1 ];
+        return stack[top];
     }
+
     public boolean isEmpty(){
-        return top ==0;
+        return top >=0;
     }
+
     public int [] getStack(){
         return stack;
     }
