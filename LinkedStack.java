@@ -32,10 +32,15 @@ public class LinkedStack {
      
     }
     public int  pop(){
-        int value = top.value;
-        top = top.next;
-        numberOfItems--;
-        return value;
+        if(isEmpty()){
+           return throw new Error("the stack doesn't contain any  elements");
+        }else{
+            int value = top.value;
+            top = top.next;
+            numberOfItems--;
+            return value;
+        }
+       
     }
     
     public int peek(){
