@@ -9,46 +9,47 @@ package datastructure;
  *
  * @author mohame_saafan
  */
+class StackNode<T> {
 
-class StackNode {
-     int value;
+    T value;
     StackNode next;
-    public StackNode(int number, StackNode next){
-        this.value = number;
+
+    public StackNode(T item, StackNode next) {
+        this.value = item;
         this.next = next;
     }
-   
-    
+
 }
-public class LinkedStack {
-    StackNode top = null;
-    int numberOfItems =0;
-    
-    
-    public void push(int number) {
-     StackNode item = new StackNode(number,top);
-     top  = item;
-     numberOfItems++;
-     
+
+public class LinkedStack<T> {
+
+    StackNode<T> top = null;
+    int length = 0;
+
+    public void push(T item) {
+        StackNode newItem = new StackNode<T>(item, top);
+        top = newItem;
+        length++;
+
     }
-    public int  pop(){
-        if(isEmpty()){
-           return throw new Error("the stack doesn't contain any  elements");
-        }else{
-            int value = top.value;
-            top = top.next;
-            numberOfItems--;
-            return value;
+
+    public T pop() {
+        if (isEmpty()) {
+            System.out.println(length + ": from length");
+            throw new Error("the stack doesn't contain any  elements");
         }
-       
+        T value = top.value;
+        top = top.next;
+        length--;
+        return value;
     }
-    
-    public int peek(){
-     return top.value;
+
+    public T peek() {
+        return top.value;
     }
-    
-    public boolean isEmpty(){
-        return numberOfItems>0;
+
+    public boolean isEmpty() {
+        return length == 0;
     }
-    
+
 }
