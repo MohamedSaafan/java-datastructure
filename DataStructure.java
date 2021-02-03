@@ -30,8 +30,61 @@ public class DataStructure {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String myPattern = "{{}}(())[[]]{";
-        System.out.println("is Matched = : " + isBalanced(myPattern));
+//        String myPattern = "{{}}(())[[]]{";
+//        System.out.println("is Matched = : " + isBalanced(myPattern
+        String infixExpression = "2*2+8";
+        System.out.println(toPostFix(infixExpression));
+    }
+    
+    
+    public static String toPostFix(String infixExperission){
+        LinkedStack<CharNode> operandsStack = new LinkedStack<>();
+        String postFixExpression = "";
+        for (int i = 0; i<infixExperission.length(); i++){
+            if(isOperand(infixExperission.charAt(i))){
+                if(operandsStack.isEmpty()){
+                    operandsStack.push(new CharNode(infixExperission.charAt(i)));
+                } else if(isOperatorGreaterThanTheOther(operandsStack.peek().value,infixExperission.charAt(i))){
+
+                    postFixExpression += operandsStack.pop().value;
+                    operandsStack.push(new CharNode(infixExperission.charAt(i)));
+                  }else{
+                    
+                    operandsStack.push(new CharNode(infixExperission.charAt(i)));
+                }
+            }else{
+                postFixExpression += infixExperission.charAt(i);
+            }
+          
+          
+        }
+
+        for(int i = 0 ; i<operandsStack.length;i++){
+            postFixExpression += operandsStack.pop().value;
+        }
+        
+        return postFixExpression;
+        
+    }
+    public static boolean isOperatorGreaterThanTheOther(char operator1,char operator2){
+        return getPerisidenceValue(operator1)> getPerisidenceValue(operator2);
+    }
+    public static boolean isOperand(char character){
+        if(character == '+' || character == '-'|| character == '*' || character == '/')
+            return true;
+        return false;
+    }
+    
+    
+    public static int getPerisidenceValue (char operator){
+        if(operator == '+' || operator =='-'){
+            return 1;
+        }
+        if(operator == '*' || operator == '/'){
+            return 2;
+        }
+        return 0;
+        
     }
 
     public static boolean isMatched(char open, char close) {
