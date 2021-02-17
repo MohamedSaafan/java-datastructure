@@ -9,11 +9,12 @@ package datastructure;
  *
  * @author mohame_saafan
  */
-class Stack{
-    private int [] stack;
-    private int top = -1 ;
+class Stack {
 
-    public Stack(){
+    private int[] stack;
+    private int top = -1;
+
+    public Stack() {
         this(100);
     }
 
@@ -21,10 +22,10 @@ class Stack{
         stack = new int[numberOfElement];
     }
 
-    public void push (int element){
-        if(top == stack.length -1){
-            int [] newStack = new int[stack.length*2];
-            for(int i = 0 ; i <= top; i++){
+    public void push(int element) {
+        if (top == stack.length - 1) {
+            int[] newStack = new int[stack.length * 2];
+            for (int i = 0; i <= top; i++) {
                 newStack[i] = stack[i];
             }
             stack = newStack;
@@ -32,23 +33,23 @@ class Stack{
         stack[++top] = element;
     }
 
-    public  int pop(){
+    public int pop() {
 
-        if(!this.isEmpty()){
+        if (!this.isEmpty()) {
             throw new Error("the Stack doesn't contain any elements");
         }
         return stack[top--];
     }
 
-    public int peek(){
+    public int peek() {
         return stack[top];
     }
 
-    public boolean isEmpty(){
-        return top >=0;
+    public boolean isEmpty() {
+        return top >= 0;
     }
 
-    public int [] getStack(){
+    public int[] getStack() {
         return stack;
     }
 
