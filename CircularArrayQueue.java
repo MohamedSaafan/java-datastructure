@@ -99,4 +99,22 @@ public class CircularQueue<T> {
         return this.size;
     }
 
+    @Override
+    public String toString() {
+        String output = " ";
+
+        int iterator = front;
+
+        do {
+
+            output += queue[iterator].getValue() + " | ";
+
+            iterator = (iterator + 1) % maxSize;
+
+        } while (iterator != front);
+
+        return output;
+
+    }
+
 }
