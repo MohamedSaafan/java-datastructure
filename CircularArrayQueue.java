@@ -117,4 +117,26 @@ public class CircularQueue<T> {
 
     }
 
+    public int search(T element) {
+
+        int position = -1;
+
+        int iterator = front;
+        boolean isFound = false;
+
+        do {
+
+            position++;
+
+            if (queue[iterator].getValue() == element) {
+                isFound = true;
+                break;
+            }
+
+            iterator++;
+        } while (iterator != front);
+
+        return isFound ? position : -1;
+    }
+
 }
